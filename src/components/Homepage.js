@@ -24,7 +24,7 @@ const Homepage = () => {
                     Latest Releases
                 </Typography>
                 <Typography variant="p" textAlign={'center'}>Userid:mahiiram@gmail.com password:12345678</Typography>
-                <Typography variant="p" textAlign={'center'}>Adminid:test1@test.com password:12345678</Typography>
+                <Typography variant="p" textAlign={'center'}>Adminid:Admin1@test.com password:12345678</Typography>
             </Box>
             <Box display='flex' width="80%" justifyContent={'center'} flexWrap={'wrap'} margin="auto" >
                 {movies && movies.slice(0, 4).map((movie, index) => (
