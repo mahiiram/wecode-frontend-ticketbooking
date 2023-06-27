@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react';
 import { deletebooking, getUserDetails, getbookings } from '../api-helpers/api-helpers'
 import { Box, IconButton, List, ListItem, ListItemText, Typography } from '@mui/material';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';

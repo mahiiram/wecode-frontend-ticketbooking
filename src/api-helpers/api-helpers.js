@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const getallmovies = async()=>{
-       const res =await axios.get("https://ticketbooking-backend-2rg6.onrender.com/movie/").catch((err)=>console.log(err));
+       const res =await axios.get("https://ticketbooking-backend-2rg6.onrender.com/").catch((err)=>console.log(err));
 
        console.log(res)
        if(res.status !== 200){
@@ -18,10 +18,7 @@ export const sendUserAuthReq = async(data,signup)=>{
          email:data.email,
          password:data.password
       }).catch((err)=>console.log(err))  
-      
-      if(res.status!==201){
-         return console.log("unexpected error occured")
-      }
+      console.log(res)
       const resdata = await res.data;
        return resdata
 

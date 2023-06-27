@@ -12,7 +12,7 @@ const AdminProfile = () => {
      
   },[]) 
   return (
-    <Box width={"100%"} display="flex">
+    <Box width={"100%"} display="flex" background-color='black'>
       <Fragment>
           {" "}
      {admin &&    (<Box 
