@@ -14,10 +14,10 @@ const UserProfile = () => {
     
   const handleDelete = (id)=>{
       deletebooking(id).then((res)=>console.log(res)).catch((err)=>console.log(err))
-
   }
   return (
-    <Box width={"100%"} display="flex">
+  
+    <Box width={"100%"} display="flex" >
       <Fragment>
           {" "}
      {user &&    (<Box 

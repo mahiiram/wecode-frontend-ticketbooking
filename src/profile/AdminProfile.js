@@ -12,7 +12,7 @@ const AdminProfile = () => {
      
   },[]) 
   return (
-    <Box width={"100%"} display="flex" background-color='black'>
+    <Box width={"100%"} display="flex" >
       <Fragment>
           {" "}
      {admin &&    (<Box 
@@ -39,7 +39,8 @@ const AdminProfile = () => {
            <List>{movies && movies.map((movies)=>(
                     <ListItem sx={{bgcolor:"#00d386",marginBottom:'10px', color:"white" ,textAlign:'center' , margin:'1'}}>
                     <ListItemText sx={{margin:1 , width:"auto", textAlign:'center'}}>
-                    Movie:{movies.title}
+                      <img src={movies.posterurl} width={'30%'} height={'30%'}  />
+                    <Typography>Movie:{movies.title}</Typography>
                     </ListItemText>
                    </ListItem>
                   ))} 
