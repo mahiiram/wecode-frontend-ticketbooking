@@ -1,8 +1,17 @@
 import { Card ,CardContent,Typography,CardActions,Button} from '@mui/material'
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const Movieitems = ({title,releasedate,posterurl,id}) => {
+    const navigate = useNavigate()
+    const handleClick = ()=>{
+    if(localStorage.getItem("userid")){
+      navigate(`/booking/${id}`)
+    }else{
+      navigate('/auth')
+    }
+  }
   return (
     <Card 
     sx={{ 
@@ -24,7 +33,7 @@ const Movieitems = ({title,releasedate,posterurl,id}) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button LinkComponent={Link} to={`/booking/${id}`} sx={{margin:'auto'}} size="medium">BookNow</Button>
+        <Button onClick={handleClick} sx={{margin:'auto'}} size="medium">BookNow</Button>
       </CardActions>
     </Card>
   )
