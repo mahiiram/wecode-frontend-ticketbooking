@@ -3,6 +3,7 @@ import "./Booking.css"
 import { useParams } from 'react-router-dom'
 import { getallmoviedetails, newbooking } from '../../api-helpers/api-helpers';
 import { Box, Button, FormLabel, TextField, Typography } from '@mui/material';
+import TheaterSeats from './TheaterSeats';
 
 
 const Booking = () => {
@@ -67,7 +68,7 @@ const Booking = () => {
                 </Fragment>}
             </div>
             <div className='seconddiv'>
-                <div className="movie-container">
+                {/* <div className="movie-container">
                     <label>SELECT THEATRE</label>
                     <select id='theatre'>
                         <option>krishna</option>
@@ -176,11 +177,12 @@ const Booking = () => {
                     </div>
                 </div>
                 <p class="text">
-                    You have selected <span id="count">0</span> seat for a price of RS.<span
+ new                    You have selected <span id="count">0</span> seat for a price of RS.<span
                         id="total">0</span>
                 </p>
 
-
+ */}
+            {/* <TheaterSeats /> */}
             </div>
         </div>
     )
