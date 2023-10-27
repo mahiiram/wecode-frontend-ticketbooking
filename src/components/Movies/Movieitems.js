@@ -1,6 +1,6 @@
 import { Card ,CardContent,Typography,CardActions,Button} from '@mui/material'
 import React from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 
 const Movieitems = ({title,releasedate,posterurl,id}) => {
