@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = `http://localhost:8080/`; // `https://ticketbooking-backend-2rg6.onrender.com/`; //
+const URL = `https://ticketbooking-backend-2rg6.onrender.com/`; //`http://localhost:8080/`; // ; //
 export const getallmovies = async () => {
   const res = await axios.get(`${URL}movies`).catch((err) => console.log(err));
 
