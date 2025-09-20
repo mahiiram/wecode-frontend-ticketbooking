@@ -1,74 +1,77 @@
-import React, { Fragment, useEffect, useState } from 'react'
-import "./Booking.css"
-import { useParams } from 'react-router-dom'
-import { getallmoviedetails, newbooking } from '../../api-helpers/api-helpers';
-import { Box, Button, FormLabel, TextField, Typography } from '@mui/material';
-import TheaterSeats from './TheaterSeats';
-
+import React, { Fragment, useEffect, useState } from "react";
+import "./Booking.css";
+import { useParams } from "react-router-dom";
+import { getallmoviedetails, newbooking } from "../../api-helpers/api-helpers";
+import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
+import TheaterSeats from "./TheaterSeats";
 
 const Booking = () => {
-
-    const [movies, setMovies] = useState();
-    const [inputs,setInputs] = useState({seatnumber:"",date:""})
-    const id = useParams().id;
-    console.log(id)
-    useEffect(() => {
-        getallmoviedetails(id)
-            .then((res) => setMovies(res.movies))
-            .catch((err) => console.log(err))
-    }, [id])
-    const handleChange = (e)=>{
-        setInputs((prevState)=>({...prevState,[e.target.name]:e.target.value}))
-    }
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        console.log(inputs)
-        newbooking({...inputs,movie:movies._id})
-        .then((res)=>console.log(res))
-        .catch((err)=>console.log(err))
-    }
-    console.log("movies",movies)
-    return (
-        <div className='maindiv'>
-            <div className='firstdiv'>
-              {movies && <Fragment>
-                <Typography padding={2} variant="h5" textAlign={"start"}>
-                   BOOK THE MOVIE:{movies.title}
-                </Typography>
-                <Box>
-                   <img width="80%" height="100%" src={movies.posterurl} alt={movies.title} />
-                </Box>
-                <Box>
-                    <Typography variant='h6'>{movies.description}</Typography>
-                    <Typography variant='h6'>Cast:{movies.actors.map((actor)=>" "+ actor + ",")}</Typography>
-                    <Typography variant='h6'>Date: {new Date( movies.releasedate).toDateString()}</Typography>
-                </Box>
-                <form onSubmit={handleSubmit}>
-                    <Box display="flex" flexDirection={"column"}>
-                        <FormLabel>SeatNumber</FormLabel>
-                        <TextField name="seatnumber"
-                        value={inputs.seatnumber}
-                        onChange={handleChange}
-                        type={"number"} 
-                        margin="normal"
-                        variant="standard" />
-                        <FormLabel>Booking Date</FormLabel>
-                        <TextField name="date"
-                        value={inputs.date}
-                        onChange={handleChange}
-                        type={"date"} 
-                        margin="normal"
-                        variant="standard" />
-                        <Button type="submit" variant="contained" sx={{mt:3}}>Book</Button>
- 
-                    </Box>
-                </form>  
-                    
-                
-                </Fragment>}
-            </div>
-            <div className='seconddiv'>
-                {/* <div className="movie-container">
+  const [movies, setMovies] = useState();
+  const [inputs, setInputs] = useState({ seatnumber: "", date: "" });
+  const id = useParams().id;
+  console.log(id);
+  useEffect(() => {
+    getallmoviedetails(id)
+      .then((res) => setMovies(res.movies))
+      .catch((err) => console.log(err));
+  }, [id]);
+  const handleChange = (e) => {
+    setInputs((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+    newbooking({ ...inputs, movie: movies._id })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
+  console.log("movies", movies);
+  return (
+    <div className="maindiv">
+      <div className="firstdiv">
+        {movies && (
+          <Fragment>
+            <Typography padding={2} variant="h5" textAlign={"start"}>
+              BOOK THE MOVIE:{movies.title}
+            </Typography>
+            <Box>
+              <img width="80%" height="100%" src={movies.posterurl} alt={movies.title} />
+            </Box>
+            <Box>
+              <Typography variant="h6">{movies.description}</Typography>
+              <Typography variant="h6">Cast:{movies.actors.map((actor) => " " + actor + ",")}</Typography>
+              <Typography variant="h6">Date: {new Date(movies.releasedate).toDateString()}</Typography>
+            </Box>
+            <form onSubmit={handleSubmit}>
+              <Box display="flex" flexDirection={"column"}>
+                <FormLabel>SeatNumber</FormLabel>
+                <TextField
+                  name="seatnumber"
+                  value={inputs.seatnumber}
+                  onChange={handleChange}
+                  type={"number"}
+                  margin="normal"
+                  variant="standard"
+                />
+                <FormLabel>Booking Date</FormLabel>
+                <TextField
+                  name="date"
+                  value={inputs.date}
+                  onChange={handleChange}
+                  type="datetime-local"
+                  margin="normal"
+                  variant="standard"
+                />
+                <Button type="submit" variant="contained" sx={{ mt: 3 }}>
+                  Book
+                </Button>
+              </Box>
+            </form>
+          </Fragment>
+        )}
+      </div>
+      <div className="seconddiv">
+        {/* <div className="movie-container">
                     <label>SELECT THEATRE</label>
                     <select id='theatre'>
                         <option>krishna</option>
@@ -182,11 +185,10 @@ const Booking = () => {
                 </p>
 
  */}
-            {/* <TheaterSeats /> */}
-            </div>
-        </div>
-    )
+        {/* <TheaterSeats /> */}
+      </div>
+    </div>
+  );
+};
 
-}
-
-export default Booking
+export default Booking;
