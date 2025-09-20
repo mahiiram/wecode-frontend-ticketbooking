@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = `https://ticketbooking-backend-2rg6.onrender.com/`;
+const URL = `https://ticketbooking-backend-2rg6.onrender.com/`; //`http://localhost:8080/`;
 export const getallmovies = async () => {
   const res = await axios.get(`${URL}movies`).catch((err) => console.log(err));
 
@@ -41,15 +41,15 @@ export const sendAdminAuthReq = async (data) => {
 export const getallmoviedetails = async (id) => {
   const res = await axios.get(`${URL}movie/${id}`).catch((err) => console.log(err));
   const resdata = await res.data;
+  console.log("moviedetails", res.data.movies);
   return resdata;
 };
 
 export const newbooking = async (data) => {
+  console.log(data);
   const res = await axios
     .post(`${URL}booking/create`, {
-      movie: data.movie,
-      date: data.date,
-      seatnumber: data.seatnumber,
+      ...data,
       user: localStorage.getItem("userid"),
     })
     .catch((err) => console.log(err));
@@ -89,7 +89,12 @@ export const getUserDetails = async () => {
   const resdata = await res.data;
   return resdata;
 };
-
+export const getTheatres = async () => {
+  //const id = localStorage.getItem("userid");
+  const res = await axios.get(`${URL}theatres/`).catch((err) => console.log(err));
+  const resdata = await res.data;
+  return resdata;
+};
 export const addmovie = async (data) => {
   const res = await axios
     .post(

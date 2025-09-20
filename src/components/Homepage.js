@@ -12,7 +12,10 @@ const Homepage = () => {
 
   useEffect(() => {
     getallmovies()
-      .then((data) => setMovies(data.movies))
+      .then((data) => {
+        const sortMovies = data.movies.sort((a, b) => new Date(b.releasedate) - new Date(a.releasedate));
+        setMovies(sortMovies);
+      })
       .catch((err) => console.log(err));
   }, []);
 
@@ -69,7 +72,7 @@ const Homepage = () => {
         </Box>
 
         {/* Latest releases heading */}
-        <Box display="flex" flexDirection="column" padding={3}  marginTop={10}>
+        <Box display="flex" flexDirection="column" padding={3} marginTop={10}>
           <Typography variant="h4" textAlign="center">
             Latest Releases
           </Typography>
