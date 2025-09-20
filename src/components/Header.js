@@ -30,10 +30,10 @@ const Header = () => {
   };
 
   const handleChange = (e, val) => {
-    console.log("moviesHeder", movies);
+    // console.log("moviesHeder", movies);
     const movie = movies.find((e) => e.title === val);
     if (movie) {
-      navigate(`/booking/${movie._id}`);
+      navigate(`/movie-booking/${movie._id}`);
     }
   };
   return (
