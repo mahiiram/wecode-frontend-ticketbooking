@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = `https://ticketbooking-backend-2rg6.onrender.com/`; //`http://localhost:8080/`;
+const URL = `http://localhost:8080/`; // `https://ticketbooking-backend-2rg6.onrender.com/`; //
 export const getallmovies = async () => {
   const res = await axios.get(`${URL}movies`).catch((err) => console.log(err));
 
@@ -18,6 +18,19 @@ export const sendUserAuthReq = async (data, signup) => {
       name: signup ? data.name : "",
       email: data.email,
       password: data.password,
+    });
+    return res.data; // ✅ only return on success
+  } catch (err) {
+    // ✅ throw error so .catch() in component works
+    throw err.response?.data || { message: "User auth failed" };
+  }
+};
+export const UserUpdate = async (payload) => {
+  try {
+    console.log("update", payload);
+    const { id, ...data } = payload;
+    const res = await axios.put(`${URL}user/${id}`, {
+      ...data,
     });
     return res.data; // ✅ only return on success
   } catch (err) {

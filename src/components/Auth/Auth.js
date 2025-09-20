@@ -4,7 +4,6 @@ import { sendUserAuthReq } from "../../api-helpers/api-helpers";
 import { useDispatch } from "react-redux";
 import { userAction } from "../../store";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 const Auth = () => {
   const navigate = useNavigate();

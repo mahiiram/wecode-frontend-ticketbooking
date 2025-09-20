@@ -41,13 +41,14 @@ function App() {
               {" "}
               <Route path="/admin" element={<Admin />} />
               <Route path="/auth" element={<Auth />} />
+              <Route path="/movie-booking/:id" element={<Booking />} />
             </>
           )}
           {isUserLoggedIn && !isAdminLoggedIn && (
             <>
               {" "}
               <Route path="/user" element={<UserProfile />} />
-              <Route path="/booking/:id" element={<Booking />} />
+              <Route path="/movie-booking/:id" element={<Booking />} />
             </>
           )}
           {!isUserLoggedIn && isAdminLoggedIn && (

@@ -1,22 +1,22 @@
 import React, { useEffect } from "react";
 import { AppBar, Toolbar, Box, Autocomplete, TextField, Tabs, Tab, IconButton } from "@mui/material";
-import MovieIcon from "@mui/icons-material/Movie";
+
 import { useState } from "react";
 import { getallmovies } from "../api-helpers/api-helpers";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // ✅ import useLocation
+import { Link, useNavigate } from "react-router-dom"; // ✅ import useLocation
 import { useDispatch, useSelector } from "react-redux";
 import { adminAction, userAction } from "../store";
 import Applogo from "../assets/Applogo.jpg";
 
 const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // ✅ hook to detect current route
+  // const location = useLocation(); // ✅ hook to detect current route
   const dispatch = useDispatch();
   const isAdminLoggedIn = useSelector((state) => state.admin.isLoggedIn);
   const isUserLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const [value, setValue] = useState(false);
   const [movies, setMovies] = useState([]);
-  const [activeTab, setActiveTab] = useState(false);
+  // const [activeTab, setActiveTab] = useState(false);
 
   useEffect(() => {
     getallmovies()
@@ -25,7 +25,7 @@ const Header = () => {
   }, []);
 
   const logout = (isAdmin) => {
-    setActiveTab(false);
+    // setActiveTab(false);
     dispatch(isAdmin ? adminAction.logout() : userAction.logout());
   };
 

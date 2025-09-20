@@ -1,6 +1,6 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Booking.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { getallmoviedetails, getTheatres, newbooking } from "../../api-helpers/api-helpers";
 import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
 import toast from "react-hot-toast";
@@ -14,9 +14,8 @@ const Booking = () => {
   const [selectedTime, setSelectedTime] = useState("");
   const [theatres, setTheatres] = useState([]);
   const [selectedTheatre, setSelectedTheatre] = useState("");
-
+  const navigate = useNavigate(); //
   const id = useParams().id;
-
   const totalSeats = 64;
   const seatPrice = 150;
 
@@ -48,6 +47,11 @@ const Booking = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const userId = localStorage.getItem("userid");
+    if (!userId) {
+      toast.error("You need to login first");
+      return navigate("/auth"); // redirect to login
+    }
     if (!inputs.date) return alert("Select booking date");
     if (!selectedTime) return alert("Select show time");
     if (selectedSeats.length === 0) return alert("Select at least 1 seat");
@@ -112,12 +116,12 @@ const Booking = () => {
           </Typography>
         </Box>
 
-        <form onSubmit={handleSubmit}>
+        {/* <form onSubmit={handleSubmit}>
           <Box display="flex" flexDirection="column" gap={2}>
             <FormLabel>Booking Date</FormLabel>
             <Box
               onClick={() => document.getElementById("booking-date")?.showPicker?.()}
-              sx={{ display: "inline-block", cursor: "pointer" , width:"100%"}}
+              sx={{ display: "inline-block", cursor: "pointer", width: "100%" }}
             >
               <TextField
                 id="booking-date"
@@ -132,13 +136,13 @@ const Booking = () => {
               Book
             </Button>
           </Box>
-        </form>
+        </form> */}
       </Box>
 
       {/* Right Column: Seat Selection */}
+      {/* Right Column: Seat Selection */}
       <Box flex={1}>
-        {/* Theatre Selection */}
-
+        {/* Date, Theatre & Show Time */}
         <Box
           display="flex"
           gap={2}
@@ -146,7 +150,7 @@ const Booking = () => {
           sx={{
             mt: 2,
             mb: 2,
-            "& select": {
+            "& select, & input": {
               padding: "8px",
               fontSize: "16px",
               borderRadius: "4px",
@@ -159,6 +163,12 @@ const Booking = () => {
             },
           }}
         >
+          {/* Booking Date */}
+          <Box display="flex" flexDirection="column">
+            <FormLabel>Booking Date</FormLabel>
+            <TextField type="date" name="date" value={inputs.date} onChange={handleChange} variant="standard" />
+          </Box>
+
           {/* Theatre Dropdown */}
           <Box display="flex" flexDirection="column">
             <FormLabel>Select Theatre</FormLabel>
@@ -204,7 +214,7 @@ const Booking = () => {
                 <Button
                   key={seatNumber}
                   onClick={() => handleSeatClick(seatNumber)}
-                  disabled={isSold || !selectedTheatre} // disable if no theatre selected
+                  disabled={isSold || !selectedTheatre || !inputs.date || !selectedTime} // disable if no theatre/date/time
                   sx={{
                     width: "100%",
                     padding: "8px 0",
@@ -225,6 +235,17 @@ const Booking = () => {
           <Typography mt={2}>
             You have selected {selectedSeats.length} seat(s) for a price of RS. {selectedSeats.length * seatPrice}
           </Typography>
+
+          {/* Submit Button BELOW seats */}
+          <Button
+            type="submit"
+            variant="contained"
+            sx={{ mt: 2 }}
+            onClick={handleSubmit}
+            disabled={!selectedTheatre || !selectedTime || !inputs.date || selectedSeats.length === 0}
+          >
+            Book
+          </Button>
         </Box>
       </Box>
     </Box>

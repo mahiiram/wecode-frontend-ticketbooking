@@ -8,16 +8,17 @@ const MovieCard = ({ id, title, posterurl, releasedate }) => {
 
   const handleClick = (e) => {
     e.stopPropagation();
-    if (localStorage.getItem("userid")) {
-      navigate(`/booking/${id}`);
-    } else {
-      navigate("/auth");
-    }
+    // if (localStorage.getItem("userid")) {
+
+    // } else {
+    //   navigate("/auth");
+    // }
+    navigate(`/movie-booking/${id}`);
   };
 
   const handleTitleClick = () => {
     setIsFocused(true); // highlight this movie name
-    navigate(`/booking/${id}`);
+    navigate(`/movie-booking/${id}`);
   };
 
   const formattedDate = releasedate ? new Date(releasedate).toDateString() : "";

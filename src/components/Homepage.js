@@ -1,7 +1,7 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React, { useEffect, useState, useRef } from "react";
 import Movieitems from "./Movies/Movieitems";
-import { Link } from "react-router-dom";
+
 import { getallmovies } from "../api-helpers/api-helpers";
 import "react-multi-carousel/lib/styles.css";
 import Carousel from "react-multi-carousel";
@@ -46,14 +46,17 @@ const Homepage = () => {
         {/* Banner carousel */}
         <Box margin="auto" width="80%" height="60vh" padding={2}>
           <Carousel
+            ref={carouselRef}
             responsive={bannerResponsive}
             infinite={true}
             autoPlay={true}
-            autoPlaySpeed={3000}
-            transitionDuration={700}
+            autoPlaySpeed={5000}
+            transitionDuration={1000}
             showDots={false}
             draggable={true}
             swipeable={true}
+            containerClass="carousel-container"
+            itemClass="carousel-item"
           >
             {movies.map((movie) => (
               <img
